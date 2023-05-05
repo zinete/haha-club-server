@@ -10,7 +10,7 @@ export class UsersService {
   ) {}
 
   create(createUserDto: CreateUserDto) {
-    return this.USER_REPOSITORY.create<User>();
+    return this.USER_REPOSITORY.create<User>(createUserDto);
   }
 
   async findAll(): Promise<User[]> {
@@ -22,10 +22,19 @@ export class UsersService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    return this.USER_REPOSITORY.update(updateUserDto, {
+      where: { id },
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.USER_REPOSITORY.destroy({
+      where: {
+        id,
+      },
+    });
+  }
+  word() {
+    return 'word';
   }
 }

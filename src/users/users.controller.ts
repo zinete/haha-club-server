@@ -40,4 +40,10 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
+
+  //  实现一个word 文档读取解析的接口
+  @Get('word')
+  word() {
+    return this.usersService.word();
+  }
 }
